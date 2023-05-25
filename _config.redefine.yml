@@ -169,7 +169,7 @@ navbar:
       path: /
       icon: fa-solid fa-house # can be empty
     Docs:
-      path: https://docs.baoyuan.xyz/
+      path: https://docs.yangbaoyuan.cn/
       icon: fa-solid fa-book # can be empty
     # Archives:
     #   path: /archives
