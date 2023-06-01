@@ -13,6 +13,92 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS有关SSH配置</title>
+    <url>/2023/05/24/centos-ssh-login/</url>
+    <content><![CDATA[<h1 id="SSH的安装"><a href="#SSH的安装" class="headerlink" title="SSH的安装"></a>SSH的安装</h1><ol>
+<li><p>首先，确保已在CentOS服务器上安装了openssh-server。通过运行以下命令检查是否已安装：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum list installed | grep openssh-server</span><br></pre></td></tr></table></figure></div>
+<p>如果未安装，请使用以下命令安装：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install openssh-server</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>启动SSH服务并设置为开机自启动：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl start sshd</span><br><span class="line">sudo systemctl enable sshd</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>使用防火墙允许SSH连接。防火墙默认情况下会阻止SSH连接，因此需要通过以下命令打开SSH端口：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=ssh</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure></div>
+<p>或者，如果要打开某个特定端口，如22，使用以下命令：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-port=22/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>编辑SSH配置文件，以添加或修改配置。使用文本编辑器编辑<code>/etc/ssh/sshd_config</code>文件：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure></div>
+<p>常见的配置选项包括：</p>
+<ul>
+<li>禁用ROOT登录：<code>PermitRootLogin no</code>。建议禁用Root登录，以增加安全性。</li>
+<li>更改默认端口：将<code>Port</code>选项更改为所需端口（如<code>Port 2222</code>）。这可以帮助减少暴力攻击。</li>
+<li>限制用户访问：例如，要仅允许用户alice和bob登录，需要添加<code>AllowUsers alice bob</code>。</li>
+</ul>
+<p>在编辑配置文件后，保存并关闭文件。</p>
+</li>
+<li><p>重启SSH服务，使更改生效：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>配置客户端。要从客户端登录到SSH服务器，需要在客户端生成SSH密钥（公钥和私钥）。在客户端运行以下命令：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure></div>
+<p>按照提示操作，您将会创建一个新的密钥对。然后将公钥添加到CentOS服务器的<code>~/.ssh/authorized_keys</code>文件中：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-copy-id user@your_server_ip</span><br></pre></td></tr></table></figure></div>
+<p>（将’user’和’your_server_ip’替换为实际的值）</p>
+</li>
+<li><p>现在您已经配置好SSH登录了。要登录到远程服务器，请从客户端运行以下命令：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">ssh user@your_server_ip</span><br></pre></td></tr></table></figure></div>
+<p>（将’user’和’your_server_ip’替换为实际的值）</p>
+</li>
+</ol>
+<p>就这样，您已经配置并从客户端访问了新的CentOS服务器。保持登录安全！</p>
+<h1 id="ssh空闲超时时间检测"><a href="#ssh空闲超时时间检测" class="headerlink" title="ssh空闲超时时间检测"></a>ssh空闲超时时间检测</h1><ol>
+<li>使用文本编辑器（例如vi,nano,vim）编辑配置文件<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure></div></li>
+<li>找到 <code>ClientAliveInterval</code> 设置为600到900之间</li>
+<li>重启 SSH 服务以使更改生效<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h1 id="使用加密的远程管理ssh"><a href="#使用加密的远程管理ssh" class="headerlink" title="使用加密的远程管理ssh"></a>使用加密的远程管理ssh</h1><p><b>未使用安全套接字（如SSH）加密远程管理服务器可能会导致以下危害：</b></p>
+<ul>
+<li>数据泄露：未加密的通信容易被截获和窃听。黑客可以捕获传输中的敏感数据，如用户名、密码、配置文件和其他重要信息。</li>
+<li>中间人攻击：未加密的连接容易受到中间人攻击。攻击者可能会拦截通信，修改数据，然后将其传输到接收者，而双方可能都不知道通信已被篡改。</li>
+<li>暴力破解攻击：当传输未加密的用户名和密码时，攻击者可以尝试破解这些凭据以访问服务器。如果它们使用了弱密码，攻击者可能很容易就能破解密码。</li>
+<li>会话劫持：在未加密的连接中，攻击者可以劫持用户会话，然后使用已登录的凭据对服务器进行操作。</li>
+<li>恶意软件和后门程序：攻击者可能会通过未加密的连接传播恶意软件或植入后门，以便在以后对服务器进行攻击。这可能会导致数据损坏、丢失或被盗。</li>
+<li>泄露IP地址：未加密的连接也会泄露使用者的IP地址，这可能导致IP被跟踪，进一步增加黑客攻击发现的可能性。</li>
+</ul>
+<ol>
+<li>在sshd_config中添加或设置 <code>Protocol 2</code> <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure></div></li>
+<li>重启 SSH 服务以使更改生效<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h1 id="设置ssh登录白名单"><a href="#设置ssh登录白名单" class="headerlink" title="设置ssh登录白名单"></a>设置ssh登录白名单</h1><ol>
+<li>在<code>/etc/hosts.deny</code>添加 <code>ALL:ALL</code></li>
+<li>在<code>/etc/hosts.allow</code>添加 <code>sshd:192.168.1.1</code> <blockquote>
+<p>192.168.1.1只是一个示例  需要根据自己情况去配置</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="配置命令行超时退出"><a href="#配置命令行超时退出" class="headerlink" title="配置命令行超时退出"></a>配置命令行超时退出</h1><p><b>未配置命令行超时退出（也称为闲置超时）可能会带来以下隐患：</b></p>
+<ul>
+<li>未授权访问：如果有人在用户离开计算机时尝试访问已登录的SSH会话，他们可能会有权限执行高级任务或对系统进行更改。这特别适用于具有sudo权限的用户，因为他们能够执行危险的系统操作。</li>
+<li>资源占用：对于运行多个SSH会话的用户，很容易忘记关闭其中的某个。这可能导致系统资源被长期占用，从而降低服务器的整体性能。</li>
+<li>难以进行故障排查：如果没有超时设置，系统管理员在分析系统日志时可能发现很多未结束的SSH会话。这会使他们难以确定哪个SSH会话是可疑的或导致问题的，从而增加排查问题的难度。</li>
+</ul>
+<ol>
+<li>在<code>/etc/profile</code>中添加<code>tmout=300</code><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure></div></li>
+<li>使更改生效<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>CentOS</category>
+      </categories>
+      <tags>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2023/06/01/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
@@ -29,17 +115,5 @@
 
 <p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>新的CentOS服务器一些配置修改</title>
-    <url>/2023/05/24/update-centos-system/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Linux</category>
-        <category>CentOS</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-      </tags>
   </entry>
 </search>
