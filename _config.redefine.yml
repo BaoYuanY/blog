@@ -21,11 +21,11 @@ info:
 # IMAGE CONFIGURATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
 defaults:
   # Favicon
-  favicon: https://baoyuan-one.oss-cn-shanghai.aliyuncs.com/tx.png
+  favicon: https://baoyuan-blog.oss-cn-shanghai.aliyuncs.com/IMG_0304.PNG
   # Site logo
-  logo: https://baoyuan-one.oss-cn-shanghai.aliyuncs.com/tx.png
+  logo: https://baoyuan-blog.oss-cn-shanghai.aliyuncs.com/IMG_0304.PNG
   # Site avatar
-  avatar: https://baoyuan-one.oss-cn-shanghai.aliyuncs.com/tx.png
+  avatar: https://baoyuan-blog.oss-cn-shanghai.aliyuncs.com/IMG_0304.PNG
 # IMAGE CONFIGURATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
