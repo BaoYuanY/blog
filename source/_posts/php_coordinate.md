@@ -5,7 +5,7 @@ tags: ['PHP']
 categories: ['PHP']
 ---
 
-   ``` shell
+   ``` php
    <?php
 
 namespace App\Service\Common;
