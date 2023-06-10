@@ -17,6 +17,8 @@ class CoordinateService
     const a    = 6378245.0;
     const ee   = 0.00669342162296594323;
 
+    //高德地图用的就是火星坐标系(GCJ-02)
+
     /**
      * 百度坐标系(BD-09) 转 火星坐标系(GCJ-02)
      * @param $bd_lon
