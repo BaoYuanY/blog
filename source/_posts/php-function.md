@@ -9,6 +9,8 @@ excerpt: "还包含已经写好的算法"
 # 数组多键排序
 
 ``` php
+        use Illuminate\Support\Collection;
+
         $tempArr = [
             [
                 'name'    => '小红',
