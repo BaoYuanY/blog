@@ -3,6 +3,7 @@ title: CentOS有关SSH配置
 date: 2023-05-24 13:53:00
 tags: ['SSH']
 categories: ['Linux', 'CentOS']
+excerpt: "ssh-keygen -t rsa"
 ---
 
 # SSH的安装
