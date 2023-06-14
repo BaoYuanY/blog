@@ -47,6 +47,9 @@
 <li><p>配置客户端。要从客户端登录到SSH服务器，需要在客户端生成SSH密钥（公钥和私钥）。在客户端运行以下命令：</p>
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure></div>
 <p>按照提示操作，您将会创建一个新的密钥对。然后将公钥添加到CentOS服务器的<code>~/.ssh/authorized_keys</code>文件中：</p>
+<p>如果是非root用户要设置文件夹或者文件权限</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></div>
+<p>登录</p>
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-copy-id user@your_server_ip</span><br></pre></td></tr></table></figure></div>
 <p>（将’user’和’your_server_ip’替换为实际的值）</p>
 </li>
