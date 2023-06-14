@@ -67,6 +67,12 @@ excerpt: "ssh-keygen -t rsa"
    ```
    按照提示操作，您将会创建一个新的密钥对。然后将公钥添加到CentOS服务器的`~/.ssh/authorized_keys`文件中：
 
+   如果是非root用户要设置文件夹或者文件权限
+   ``` shell
+   chmod 700 ~/.ssh
+   chmod 600 ~/.ssh/authorized_keys
+   ```
+   登录
    ``` shell
    ssh-copy-id user@your_server_ip
    ```
