@@ -47,6 +47,8 @@ excerpt: "ssh-keygen -t rsa"
    常见的配置选项包括：
 
     - 禁用ROOT登录：`PermitRootLogin no`。建议禁用Root登录，以增加安全性。
+    - 禁止密码登录：`PasswordAuthentication no`。
+    - 开始ssh登录：`PubkeyAuthentication yes`。
     - 更改默认端口：将`Port`选项更改为所需端口（如`Port 2222`）。这可以帮助减少暴力攻击。
     - 限制用户访问：例如，要仅允许用户alice和bob登录，需要添加`AllowUsers alice bob`。
 
