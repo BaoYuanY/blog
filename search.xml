@@ -13,6 +13,18 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux使用Docker搭建PHP开发环境</title>
+    <url>/2023/06/14/centos-build-dnmp/</url>
+    <content><![CDATA[<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1>]]></content>
+      <categories>
+        <category>Docker</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>dnmp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS有关SSH配置</title>
     <url>/2023/05/24/centos-ssh-login/</url>
     <content><![CDATA[<h1 id="SSH的安装"><a href="#SSH的安装" class="headerlink" title="SSH的安装"></a>SSH的安装</h1><ol>
