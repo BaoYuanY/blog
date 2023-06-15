@@ -6,7 +6,11 @@ categories: ['Docker', 'PHP']
 excerpt: "在Docker中搭建dnmp(PHP开发环境)"
 ---
 
-# Docker安装
+# 1. Docker安装
+
+{% btn regular::查看历史文章::/linux-insert-docker/::fa-solid fa-newspaper %}
+
+# 2. 下载dnmp文件
 
 
 
