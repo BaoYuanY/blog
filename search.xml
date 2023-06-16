@@ -15,9 +15,45 @@
   <entry>
     <title>Linux使用Docker搭建PHP开发环境</title>
     <url>/centos-build-dnmp/</url>
-    <content><![CDATA[<h1 id="1-Docker安装"><a href="#1-Docker安装" class="headerlink" title="1. Docker安装"></a>1. Docker安装</h1><a class="button  regular" href='/linux-insert-docker/' title='查看历史文章'><i class='fa-solid fa-newspaper'></i> 查看历史文章</a>
+    <content><![CDATA[<h1 id="1-Docker安装"><a href="#1-Docker安装" class="headerlink" title="1. Docker安装"></a>1. Docker安装</h1><p>我直接使用的是yum安装</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">#安装docker</span></span></span><br><span class="line">yum install docker</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">#安装docker-compose</span></span></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure></div>
 
-<h1 id="2-下载dnmp文件"><a href="#2-下载dnmp文件" class="headerlink" title="2. 下载dnmp文件"></a>2. 下载dnmp文件</h1>]]></content>
+<p>结果如图所市</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/centos-build-dnmp/dnmp-dir.png"
+                      alt="目录示例"
+                ></p>
+<h1 id="2-直接拉环境配置"><a href="#2-直接拉环境配置" class="headerlink" title="2. 直接拉环境配置"></a>2. 直接拉环境配置</h1><p>想好放在哪个目录后使用git克隆代码</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">git clone -b Linux https://github.com/BaoYuanY/dnmp.git</span><br></pre></td></tr></table></figure></div>
+
+<p>如下</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/centos-build-dnmp/dnmp-dir.png"
+                      alt="目录示例"
+                ><br>我放在了用户主目录下。其中：</p>
+<ul>
+<li>dnmp是搭建的php开发环境</li>
+<li>wwwroot是我挂载的目录</li>
+</ul>
+<p>所以我们在配置dnmp的env的时候 <code>SOURCE_DIR</code> 就要是<code>/home/yby/wwwroot</code><br>如果不知道后面写什么 可以参照如下图所示</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/centos-build-dnmp/dnmp-source-dir.png"
+                      alt="目录示例"
+                ></p>
+<p>拿到路径以后填充到对应的配置</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/centos-build-dnmp/set-source-dir.png"
+                      alt="目录示例"
+                ></p>
+]]></content>
       <categories>
         <category>Docker</category>
         <category>PHP</category>
