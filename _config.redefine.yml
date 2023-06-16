@@ -102,8 +102,8 @@ home_banner:
   style: static # static or fixed
   # Home banner image
   image:
-    light: https://baoyuan-blog.oss-cn-shanghai.aliyuncs.com/background-comic-children.png    # light mode
-    dark: https://baoyuan-blog.oss-cn-shanghai.aliyuncs.com/background-comic-children.png  # dark mode
+    light: https://baoyuan-blog.oss-cn-shanghai.aliyuncs.com/background-meadow.png    # light mode
+    dark: https://baoyuan-blog.oss-cn-shanghai.aliyuncs.com/background-meadow.png  # dark mode
   # Home banner title
   title: 好记性不如烂笔头
   # Home banner subtitle
