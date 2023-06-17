@@ -15,44 +15,23 @@
   <entry>
     <title>Linux使用Docker搭建PHP开发环境</title>
     <url>/centos-build-dnmp/</url>
-    <content><![CDATA[<h1 id="1-Docker安装"><a href="#1-Docker安装" class="headerlink" title="1. Docker安装"></a>1. Docker安装</h1><p>我直接使用的是yum安装</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">#安装docker</span></span></span><br><span class="line">yum install docker</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">#安装docker-compose</span></span></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure></div>
+    <content><![CDATA[<h1 id="一-Docker安装"><a href="#一-Docker安装" class="headerlink" title="一. Docker安装"></a>一. Docker安装</h1><a class="button  regular" href='/linux-insert-docker' title='Linux安装Docker'><i class='fa-solid fa-newspaper'></i> Linux安装Docker</a>
 
-<p>结果如图所市</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/centos-build-dnmp/dnmp-dir.png"
-                      alt="目录示例"
-                ></p>
-<h1 id="2-直接拉环境配置"><a href="#2-直接拉环境配置" class="headerlink" title="2. 直接拉环境配置"></a>2. 直接拉环境配置</h1><p>想好放在哪个目录后使用git克隆代码</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">git clone -b Linux https://github.com/BaoYuanY/dnmp.git</span><br></pre></td></tr></table></figure></div>
+<h1 id="二-安装-docker-compose"><a href="#二-安装-docker-compose" class="headerlink" title="二. 安装 docker-compose"></a>二. 安装 <code>docker-compose</code></h1><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">慢的话可以用这个</span></span><br><span class="line">sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure></div>
 
-<p>如下</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/centos-build-dnmp/dnmp-dir.png"
-                      alt="目录示例"
-                ><br>我放在了用户主目录下。其中：</p>
-<ul>
-<li>dnmp是搭建的php开发环境</li>
-<li>wwwroot是我挂载的目录</li>
-</ul>
-<p>所以我们在配置dnmp的env的时候 <code>SOURCE_DIR</code> 就要是<code>/home/yby/wwwroot</code><br>如果不知道后面写什么 可以参照如下图所示</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/centos-build-dnmp/dnmp-source-dir.png"
-                      alt="目录示例"
-                ></p>
-<p>拿到路径以后填充到对应的配置</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/centos-build-dnmp/set-source-dir.png"
-                      alt="目录示例"
-                ></p>
+<h3 id="2-设置权限"><a href="#2-设置权限" class="headerlink" title="2. 设置权限"></a>2. 设置权限</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="3-验证"><a href="#3-验证" class="headerlink" title="3. 验证"></a>3. 验证</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="三-拉取dnmp环境配置"><a href="#三-拉取dnmp环境配置" class="headerlink" title="三. 拉取dnmp环境配置"></a>三. 拉取dnmp环境配置</h1><p>按需拉取 随便放在一个地方</p>
+<div class="tabs" id="tab-代码克隆"><ul class="nav-tabs"><li class="tab active"><a class="#代码克隆-1">gitee</a></li><li class="tab"><a class="#代码克隆-2">github</a></li><li class="tab"><a class="#代码克隆-3">gitlab</a></li></ul><div class="tab-content"><div class="tab-pane active" id="代码克隆-1"><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://gitee.com/baoyuan0304/dnmp.git</span><br></pre></td></tr></table></figure></div></div><div class="tab-pane" id="代码克隆-2"><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">git clone -b Linux https://github.com/BaoYuanY/dnmp.git</span><br></pre></td></tr></table></figure></div></div><div class="tab-pane" id="代码克隆-3"><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">git clone -b Linux https://gitlab.yangbaoyuan.cn/BaoYuan/dnmp.git</span><br></pre></td></tr></table></figure></div></div></div></div>
+
+<h1 id="四-配置"><a href="#四-配置" class="headerlink" title="四. 配置"></a>四. 配置</h1><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir /www              #设置挂载目录</span><br><span class="line">cd /www            </span><br><span class="line">git clone ******        #克隆dnmp代码 </span><br><span class="line">vim .env                #编辑 .env</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改 SOURCE_DIR=/www</span>  </span><br></pre></td></tr></table></figure></div>
+<p>在dnmp目录下执行</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose up -d  #第一次会先build 时间稍微长一点</span><br></pre></td></tr></table></figure></div>
+
+
+<p><b>然后配置自己的nginx的*****.conf文件</b></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -177,19 +156,19 @@
     <content><![CDATA[<h2 id="安装额外的工具"><a href="#安装额外的工具" class="headerlink" title="安装额外的工具"></a>安装额外的工具</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2 --skip-broken</span><br></pre></td></tr></table></figure></div>
 
 
-<h2 id="1-如果之前安装过Docker，可以使用下面命令卸载"><a href="#1-如果之前安装过Docker，可以使用下面命令卸载" class="headerlink" title="1. 如果之前安装过Docker，可以使用下面命令卸载"></a>1. 如果之前安装过Docker，可以使用下面命令卸载</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br></pre></td></tr></table></figure></div>
+<h2 id="一-如果之前安装过Docker，可以使用下面命令卸载"><a href="#一-如果之前安装过Docker，可以使用下面命令卸载" class="headerlink" title="一. 如果之前安装过Docker，可以使用下面命令卸载"></a>一. 如果之前安装过Docker，可以使用下面命令卸载</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="2-设置Docker镜像源"><a href="#2-设置Docker镜像源" class="headerlink" title="2. 设置Docker镜像源"></a>2. 设置Docker镜像源</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure></div>
+<h2 id="二-设置Docker镜像源"><a href="#二-设置Docker镜像源" class="headerlink" title="二. 设置Docker镜像源"></a>二. 设置Docker镜像源</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure></div>
 
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sed -i &#x27;s/download.docker.com/mirrors.aliyun.com\/docker-ce/g&#x27; /etc/yum.repos.d/docker-ce.repo</span><br></pre></td></tr></table></figure></div>
 
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure></div>
 
 
-<h2 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure></div>
+<h2 id="三-安装"><a href="#三-安装" class="headerlink" title="三. 安装"></a>三. 安装</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure></div>
 
 
-<h2 id="4-启动、停止、重启docker命令"><a href="#4-启动、停止、重启docker命令" class="headerlink" title="4. 启动、停止、重启docker命令"></a>4. 启动、停止、重启docker命令</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动docker服务</span></span><br><span class="line">systemctl start docker  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止docker服务</span></span><br><span class="line">systemctl stop docker  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启docker服务</span></span><br><span class="line">systemctl restart docker  </span><br></pre></td></tr></table></figure></div>
+<h2 id="四-启动、停止、重启docker命令"><a href="#四-启动、停止、重启docker命令" class="headerlink" title="四. 启动、停止、重启docker命令"></a>四. 启动、停止、重启docker命令</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动docker服务</span></span><br><span class="line">systemctl start docker  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止docker服务</span></span><br><span class="line">systemctl stop docker  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启docker服务</span></span><br><span class="line">systemctl restart docker  </span><br></pre></td></tr></table></figure></div>
 
 
 <p>输入 <code>systemctl status docker</code> 查看docker启动状态 如下图</p>
@@ -206,7 +185,7 @@
                      data-src="/images/linux-insert-docker/docker-version.png"
                       alt="image"
                 ></p>
-<h2 id="5-配置镜像加速"><a href="#5-配置镜像加速" class="headerlink" title="5. 配置镜像加速"></a>5. 配置镜像加速</h2><p>可以使用自己的阿里云账号配置(没有账号的话建议注册一下) 详情查看文档 &#x3D;&#x3D;&#x3D;&gt; <a herf="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">容器镜像服务</a></p>
+<h2 id="五-配置镜像加速"><a href="#五-配置镜像加速" class="headerlink" title="五. 配置镜像加速"></a>五. 配置镜像加速</h2><p>可以使用自己的阿里云账号配置(没有账号的话建议注册一下) 详情查看文档 &#x3D;&#x3D;&#x3D;&gt; <a herf="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">容器镜像服务</a></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
