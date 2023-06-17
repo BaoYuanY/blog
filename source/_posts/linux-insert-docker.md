@@ -15,7 +15,7 @@ yum install -y yum-utils \
 ```
 
 
-## 1. 如果之前安装过Docker，可以使用下面命令卸载
+## 一. 如果之前安装过Docker，可以使用下面命令卸载
 
 ```shell
     yum remove docker \
@@ -31,7 +31,7 @@ yum install -y yum-utils \
                       docker-ce
 ```
 
-## 2. 设置Docker镜像源
+## 二. 设置Docker镜像源
 
 ```shell
     yum-config-manager \
@@ -48,13 +48,13 @@ yum makecache fast
 ```
 
 
-## 3. 安装
+## 三. 安装
 ```shell
 yum install -y docker-ce
 ```
 
 
-## 4. 启动、停止、重启docker命令
+## 四. 启动、停止、重启docker命令
 
 ```shell
 # 启动docker服务
@@ -76,7 +76,7 @@ systemctl restart docker
 
 ![image](/images/linux-insert-docker/docker-version.png)
 
-## 5. 配置镜像加速
+## 五. 配置镜像加速
 
 可以使用自己的阿里云账号配置(没有账号的话建议注册一下) 详情查看文档 ===> <a herf="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">容器镜像服务</a>
 

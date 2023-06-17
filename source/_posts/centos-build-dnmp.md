@@ -6,60 +6,76 @@ categories: ['Docker', 'PHP']
 excerpt: "在Docker中搭建dnmp(PHP开发环境)"
 ---
 
-# 1. Docker安装
+# 一. Docker安装
 
-我直接使用的是yum安装
+{% btn regular::Linux安装Docker::/linux-insert-docker::fa-solid fa-newspaper %}
 
+# 二. 安装 `docker-compose`
+
+### 1. 下载
 ```shell
-##安装docker
-yum install docker
+sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
-##安装docker-compose
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#慢的话可以用这个
+sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+```
+
+### 2. 设置权限
+```shell
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-结果如图所市
+### 3. 验证
+```shell
+docker-compose --version
+```
 
-![目录示例](/images/centos-build-dnmp/dnmp-dir.png)
+# 三. 拉取dnmp环境配置
 
+按需拉取 随便放在一个地方
 
-# 2. 直接拉环境配置
+{% tabs 代码克隆 %}
+<!-- tab gitee-->
 
-想好放在哪个目录后使用git克隆代码
+```shell
+git clone https://gitee.com/baoyuan0304/dnmp.git
+```
+
+<!-- endtab -->
+
+<!-- tab github-->
 
 ```shell
 git clone -b Linux https://github.com/BaoYuanY/dnmp.git
 ```
 
-如下
+<!-- endtab -->
 
-![目录示例](/images/centos-build-dnmp/dnmp-dir.png)
-我放在了用户主目录下。其中：
-- dnmp是搭建的php开发环境
-- wwwroot是我挂载的目录
+<!-- tab gitlab-->
 
-所以我们在配置dnmp的env的时候 `SOURCE_DIR` 就要是`/home/yby/wwwroot`
-如果不知道后面写什么 可以参照如下图所示
+```shell
+git clone -b Linux https://gitlab.yangbaoyuan.cn/BaoYuan/dnmp.git
+```
 
-![目录示例](/images/centos-build-dnmp/dnmp-source-dir.png)
+<!-- endtab -->
+{% endtabs %}
 
-拿到路径以后填充到对应的配置
+# 四. 配置
 
-![目录示例](/images/centos-build-dnmp/set-source-dir.png)
-
-
-
-
-
-
-
-
-
-
-
+```shell
+mkdir /www              #设置挂载目录
+cd /www            
+git clone ******        #克隆dnmp代码 
+vim .env                #编辑 .env
+#修改 SOURCE_DIR=/www  
+```
+在dnmp目录下执行
+```shell
+docker-compose up -d  #第一次会先build 时间稍微长一点
+```
 
 
+<b>然后配置自己的nginx的*****.conf文件</b>
 
 
 
