@@ -174,10 +174,56 @@
   <entry>
     <title>Linux安装Docker</title>
     <url>/linux-insert-docker/</url>
-    <content><![CDATA[<h2 id="首先安装yum的工具"><a href="#首先安装yum的工具" class="headerlink" title="首先安装yum的工具"></a>首先安装yum的工具</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2 --skip-broken</span><br></pre></td></tr></table></figure></div>
+    <content><![CDATA[<h2 id="安装额外的工具"><a href="#安装额外的工具" class="headerlink" title="安装额外的工具"></a>安装额外的工具</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2 --skip-broken</span><br></pre></td></tr></table></figure></div>
 
 
-<h2 id="设置docker镜像源"><a href="#设置docker镜像源" class="headerlink" title="设置docker镜像源"></a>设置docker镜像源</h2>]]></content>
+<h2 id="1-如果之前安装过Docker，可以使用下面命令卸载"><a href="#1-如果之前安装过Docker，可以使用下面命令卸载" class="headerlink" title="1. 如果之前安装过Docker，可以使用下面命令卸载"></a>1. 如果之前安装过Docker，可以使用下面命令卸载</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="2-设置Docker镜像源"><a href="#2-设置Docker镜像源" class="headerlink" title="2. 设置Docker镜像源"></a>2. 设置Docker镜像源</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sed -i &#x27;s/download.docker.com/mirrors.aliyun.com\/docker-ce/g&#x27; /etc/yum.repos.d/docker-ce.repo</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="4-启动、停止、重启docker命令"><a href="#4-启动、停止、重启docker命令" class="headerlink" title="4. 启动、停止、重启docker命令"></a>4. 启动、停止、重启docker命令</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动docker服务</span></span><br><span class="line">systemctl start docker  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止docker服务</span></span><br><span class="line">systemctl stop docker  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启docker服务</span></span><br><span class="line">systemctl restart docker  </span><br></pre></td></tr></table></figure></div>
+
+
+<p>输入 <code>systemctl status docker</code> 查看docker启动状态 如下图</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux-insert-docker/docker-status.png"
+                      alt="image"
+                ></p>
+<p>输入 <code>docker -v</code> 查看docker版本</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux-insert-docker/docker-version.png"
+                      alt="image"
+                ></p>
+<h2 id="5-配置镜像加速"><a href="#5-配置镜像加速" class="headerlink" title="5. 配置镜像加速"></a>5. 配置镜像加速</h2><p>可以使用自己的阿里云账号配置(没有账号的话建议注册一下) 详情查看文档 &#x3D;&#x3D;&#x3D;&gt; <a herf="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">容器镜像服务</a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux-insert-docker/docker-mirrors.png"
+                      alt="image"
+                ></p>
+<h3 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sudo前缀针对非root用户且有sudo权限的用户 视情况加与不加</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建文件夹</span></span><br><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将配置写入文件</span></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://7pvmk0yu.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重新加载文件</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启docker</span></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="PS"><a href="#PS" class="headerlink" title="PS:"></a>PS:</h2><p>如果遇到一些问题 可以试着关闭防火墙后重试</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">关闭</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁止开机启动防火墙</span></span><br><span class="line">systemctl disable firewalld</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看是否关闭防火墙</span></span><br><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+]]></content>
       <categories>
         <category>Linux</category>
       </categories>
