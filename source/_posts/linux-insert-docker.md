@@ -8,7 +8,7 @@ excerpt: "依赖CentOS 7.6"
 
 ## 安装额外的工具
 
-``` shell
+``` bash
 yum install -y yum-utils \
            device-mapper-persistent-data \
            lvm2 --skip-broken
@@ -17,7 +17,7 @@ yum install -y yum-utils \
 
 ## 一. 如果之前安装过Docker，可以使用下面命令卸载
 
-```shell
+```bash
     yum remove docker \
                       docker-client \
                       docker-client-latest \
@@ -33,30 +33,30 @@ yum install -y yum-utils \
 
 ## 二. 设置Docker镜像源
 
-```shell
+```bash
     yum-config-manager \
         --add-repo \
         https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 
-```shell
+```bash
 sed -i 's/download.docker.com/mirrors.aliyun.com\/docker-ce/g' /etc/yum.repos.d/docker-ce.repo
 ```
 
-```shell
+```bash
 yum makecache fast
 ```
 
 
 ## 三. 安装
-```shell
+```bash
 yum install -y docker-ce
 ```
 
 
 ## 四. 启动、停止、重启docker命令
 
-```shell
+```bash
 # 启动docker服务
 systemctl start docker  
 
@@ -84,7 +84,7 @@ systemctl restart docker
 
 ### 配置说明
 
-```shell
+```bash
 # sudo前缀针对非root用户且有sudo权限的用户 视情况加与不加
 
 # 创建文件夹
@@ -108,7 +108,7 @@ sudo systemctl restart docker
 
 如果遇到一些问题 可以试着关闭防火墙后重试
 
-```shell
+```bash
 # 关闭
 systemctl stop firewalld
 
