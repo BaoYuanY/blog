@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>使用Laravel框架</title>
+    <url>/build-admin-yangbaoyuan/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>PHP</category>
+        <category>Laravel</category>
+      </categories>
+      <tags>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搭建博客</title>
     <url>/build-blog/</url>
     <content><![CDATA[<p>11111</p>
