@@ -76,7 +76,23 @@ excerpt: "还包含已经写好的算法"
 1. 首先比较两个元素的`chinese`。如果它们不相等，则用合并比较运算符`<=>`比较它们，并返回结果。注意：`$b['chinese'] <=> $a['chinese']` 这种写法是为了降序排列。因此，成绩较高的元素会排在较低的元素之前。
 2. 如果`chinese`相等，比较函数会继续比较两个元素的`math`。如果它们不相等，同样使用合并比较运算符`<=>`进行比较，并返回结果。这里同样是降序排列。
 3. 如果`math`也相等，最后比较`english`。与前两次比较一样，使用合并比较运算符`<=>`进行降序排序。
-        
+       
+
+# 查询任意一个字符串是否存在另一个字符串中
+
+```php
+$match = function($string, $keywords) {
+    $pattern = '/(' . implode('|', $keywords) . ')/';
+    return (bool) preg_match($pattern, $string);
+}
+
+$keywords = ['物流', '配送', '送货', '司机'];
+$string = "这里有一个关于物流配送的例子";
+
+$res = $match($string, $keywords);
+
+//输出true
+```
 
 
 
