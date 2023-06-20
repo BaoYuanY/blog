@@ -400,16 +400,7 @@
 </ol>
 <h1 id="查询任意一个字符串是否存在另一个字符串中"><a href="#查询任意一个字符串是否存在另一个字符串中" class="headerlink" title="查询任意一个字符串是否存在另一个字符串中"></a>查询任意一个字符串是否存在另一个字符串中</h1><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$match</span> = <span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$string</span>, <span class="variable">$keywords</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$pattern</span> = <span class="string">&#x27;/(&#x27;</span> . <span class="title function_ invoke__">implode</span>(<span class="string">&#x27;|&#x27;</span>, <span class="variable">$keywords</span>) . <span class="string">&#x27;)/&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">bool</span>) <span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$string</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$keywords</span> = [<span class="string">&#x27;物流&#x27;</span>, <span class="string">&#x27;配送&#x27;</span>, <span class="string">&#x27;送货&#x27;</span>, <span class="string">&#x27;司机&#x27;</span>];</span><br><span class="line"><span class="variable">$string</span> = <span class="string">&quot;这里有一个关于物流配送的例子&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$res</span> = <span class="variable">$match</span>(<span class="variable">$string</span>, <span class="variable">$keywords</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出true</span></span><br></pre></td></tr></table></figure></div>
 
-
-
-
-
-
-
-
-
-
-
+<h2 id="代码解释-1"><a href="#代码解释-1" class="headerlink" title="代码解释"></a>代码解释</h2><p><code>strpos()</code> 只针对于一个字符串，所以这里用正则匹配更好一点</p>
 ]]></content>
       <categories>
         <category>PHP</category>
