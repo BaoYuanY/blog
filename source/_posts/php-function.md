@@ -94,6 +94,9 @@ $res = $match($string, $keywords);
 //输出true
 ```
 
+## 代码解释
+`strpos()` 只针对于一个字符串，所以这里用正则匹配更好一点
+
 
 
 
