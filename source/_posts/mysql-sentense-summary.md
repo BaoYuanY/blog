@@ -9,7 +9,7 @@ excerpt: "总结..."
 
 # 查询数据库中一个或两个字段重复的
 
-```mysql
+``` MySQL
 SELECT field1, field2, COUNT(*) as count
 FROM `table`
 GROUP BY field1, field2
