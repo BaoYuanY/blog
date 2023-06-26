@@ -30,7 +30,7 @@
 <meta property="og:description" content="还包含已经写好的算法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-12T03:26:00.000Z">
-<meta property="article:modified_time" content="2023-06-25T15:37:00.008Z">
+<meta property="article:modified_time" content="2023-06-26T07:17:48.627Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
@@ -265,8 +265,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-06-25 23:37</span>
-            <span class="mobile">2023-06-25 23:37</span>
+            <span class="desktop">2023-06-26 15:17:48</span>
+            <span class="mobile">2023-06-26 15:17</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -299,12 +299,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>847 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>972 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
         </span>
     
     
@@ -333,6 +333,12 @@
 <h1 id="查询任意一个字符串是否存在另一个字符串中"><a href="#查询任意一个字符串是否存在另一个字符串中" class="headerlink" title="查询任意一个字符串是否存在另一个字符串中"></a>查询任意一个字符串是否存在另一个字符串中</h1><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$match</span> = <span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$string</span>, <span class="variable">$keywords</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$pattern</span> = <span class="string">&#x27;/(&#x27;</span> . <span class="title function_ invoke__">implode</span>(<span class="string">&#x27;|&#x27;</span>, <span class="variable">$keywords</span>) . <span class="string">&#x27;)/&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">bool</span>) <span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$string</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$keywords</span> = [<span class="string">&#x27;物流&#x27;</span>, <span class="string">&#x27;配送&#x27;</span>, <span class="string">&#x27;送货&#x27;</span>, <span class="string">&#x27;司机&#x27;</span>];</span><br><span class="line"><span class="variable">$string</span> = <span class="string">&quot;这里有一个关于物流配送的例子&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$res</span> = <span class="variable">$match</span>(<span class="variable">$string</span>, <span class="variable">$keywords</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出true</span></span><br></pre></td></tr></table></figure></div>
 
 <h2 id="代码解释-1"><a href="#代码解释-1" class="headerlink" title="代码解释"></a>代码解释</h2><p><code>strpos()</code> 只针对于一个字符串，所以这里用正则匹配更好一点</p>
+<h1 id="两个数组取交集"><a href="#两个数组取交集" class="headerlink" title="两个数组取交集"></a>两个数组取交集</h1><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$array1</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="variable">$array2</span> = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$intersection</span> = <span class="title function_ invoke__">array_intersect</span>(<span class="variable">$array1</span>, <span class="variable">$array2</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$intersection</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="title function_ invoke__">Array</span></span><br><span class="line">(</span><br><span class="line">    [<span class="number">1</span>] =&gt; <span class="number">2</span></span><br><span class="line">    [<span class="number">2</span>] =&gt; <span class="number">3</span></span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="代码解释-2"><a href="#代码解释-2" class="headerlink" title="代码解释"></a>代码解释</h2><ol>
+<li>在上面的示例中，<code>array_intersect()</code> 函数接受两个数组 <code>$array1</code> 和 <code>$array2</code> 作为参数，并返回它们的交集。最后，使用 <code>print_r()</code> 函数打印交集数组。</li>
+<li>请注意，交集数组中的元素保留了原始数组中的键。如果你想重置键，可以使用 <code>array_values()</code> 函数对交集数组进行重新索引：</li>
+</ol>
 
             </div>
 
@@ -397,7 +403,7 @@
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
         <div class="page-title">PHP一些函数方法汇总</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%A4%9A%E9%94%AE%E6%8E%92%E5%BA%8F"><span class="nav-text">数组多键排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A"><span class="nav-text">代码解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-text">方式1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F2"><span class="nav-text">方式2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD"><span class="nav-text">查询任意一个字符串是否存在另一个字符串中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A-1"><span class="nav-text">代码解释</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%A4%9A%E9%94%AE%E6%8E%92%E5%BA%8F"><span class="nav-text">数组多键排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A"><span class="nav-text">代码解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-text">方式1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F2"><span class="nav-text">方式2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD"><span class="nav-text">查询任意一个字符串是否存在另一个字符串中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A-1"><span class="nav-text">代码解释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E5%8F%96%E4%BA%A4%E9%9B%86"><span class="nav-text">两个数组取交集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A-2"><span class="nav-text">代码解释</span></a></li></ol></li></ol>
 
     </div>
 </div>
