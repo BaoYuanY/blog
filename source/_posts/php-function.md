@@ -98,6 +98,30 @@ $res = $match($string, $keywords);
 `strpos()` 只针对于一个字符串，所以这里用正则匹配更好一点
 
 
+# 两个数组取交集
+
+```php
+$array1 = [1, 2, 3];
+$array2 = [2, 3, 4];
+
+$intersection = array_intersect($array1, $array2);
+
+print_r($intersection);
+
+//输出
+Array
+(
+    [1] => 2
+    [2] => 3
+)
+
+```
+
+## 代码解释
+1. 在上面的示例中，`array_intersect()` 函数接受两个数组 `$array1` 和 `$array2` 作为参数，并返回它们的交集。最后，使用 `print_r()` 函数打印交集数组。
+2. 请注意，交集数组中的元素保留了原始数组中的键。如果你想重置键，可以使用 `array_values()` 函数对交集数组进行重新索引：
+
+
 
 
 
