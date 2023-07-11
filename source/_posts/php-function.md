@@ -87,9 +87,9 @@ $match = function($string, $keywords) {
 }
 
 $keywords = ['物流', '配送', '送货', '司机'];
-$string = "这里有一个关于物流配送的例子";
+$string   = "这里有一个关于物流配送的例子";
 
-$res = $match($string, $keywords);
+$res      = $match($string, $keywords);
 
 //输出true
 ```
@@ -130,7 +130,7 @@ Array
 
 ```php
 $jsonString = '{"field": "Hello\nWorld"}';
-$array = json_decode($jsonString, true);
+$array      = json_decode($jsonString, true);
 ```
 
 在这种情况下，`json_decode`将无法正确解析包含`\n`的字符串，因为它会尝试将其解析为换行符。这将导致无效的JSON格式，从而引发错误。
@@ -140,17 +140,17 @@ $array = json_decode($jsonString, true);
 以下是使用`addslashes`函数转义字段的示例：
 
 ```php
-$fieldValue = "Hello\nWorld";
-$escapedFieldValue = addslashes($fieldValue);
-$jsonString = '{"field": "'.$escapedFieldValue.'"}';
-$array = json_decode($jsonString, true);
+$fieldValue         = "Hello\nWorld";
+$escapedFieldValue  = addslashes($fieldValue);
+$jsonString         = '{"field": "'.$escapedFieldValue.'"}';
+$array              = json_decode($jsonString, true);
 ```
 
 或者，你可以直接使用`json_encode`函数来处理整个数组，而不是手动构建JSON字符串：
 
 ```php
-$array = array("field" => "Hello\nWorld");
-$jsonString = json_encode($array);
+$array        = array("field" => "Hello\nWorld");
+$jsonString   = json_encode($array);
 $decodedArray = json_decode($jsonString, true);
 ```
 
