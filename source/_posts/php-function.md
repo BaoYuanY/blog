@@ -156,6 +156,19 @@ $decodedArray = json_decode($jsonString, true);
 
 这样，`\n`将被正确地转义为`\\n`，并且`json_decode`函数将能够正确地解析JSON字符串并将其转换为数组。
 
+# 简单加密手机号方式
+
+```php
+    function encryptPhone(string $phone): string
+    {
+        if (strlen($phone) == 11) {
+            return substr_replace($phone, '****', 3, 4);
+        } else {
+            return "***********";
+        }
+    }
+```
+
 
 
 
