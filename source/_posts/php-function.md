@@ -170,6 +170,50 @@ $decodedArray = json_decode($jsonString, true);
 ```
 
 
+# 判断某个点位是否存在一个经纬度区域
+
+```php
+$polygon = new \League\Geotools\Polygon\Polygon([
+    [48.9675969, 1.7440796],
+    [48.4711003, 2.5268555],
+    [48.9279131, 3.1448364],
+    [49.3895245, 2.6119995],
+]);
+
+$polygon->setPrecision(5); // set the comparision precision
+$polygon->pointInPolygon(new \League\Geotools\Coordinate\Coordinate([49.1785607, 2.4444580])); // true
+$polygon->pointInPolygon(new \League\Geotools\Coordinate\Coordinate([49.1785607, 5])); // false
+$polygon->pointOnBoundary(new \League\Geotools\Coordinate\Coordinate([48.7193486, 2.13546755])); // true
+$polygon->pointOnBoundary(new \League\Geotools\Coordinate\Coordinate([47.1587188, 2.87841795])); // false
+$polygon->pointOnVertex(new \League\Geotools\Coordinate\Coordinate([48.4711003, 2.5268555])); // true
+$polygon->pointOnVertex(new \League\Geotools\Coordinate\Coordinate([49.1785607, 2.4444580])); // false
+$polygon->getBoundingBox(); // return the BoundingBox object
+```
+
+## 代码解释
+它可以帮助您知道点 (坐标) 是在多边形中还是在多边形的边界上，以及点是否在多边形的顶点上。
+
+## composer包详情
+https://packagist.org/packages/league/geotools
+**这个包里面可以提供了一个方法：它可以帮助您了解一个点（坐标）是在多边形中还是在多边形的边界上，以及它是否在多边形的顶点上**
+- 针对一个或一 组提供商以串行/并行方式批处理地理编码和反向地理编码请求
+- 使用PSR-6缓存地理编码和反向地理编码结果以提高性能
+- 在命令行界面(CLI) + 转储程序和格式化程序中计算地理编码和反向地理编码
+- 接受几乎所有类型的 WGS84 地理坐标作为坐标。
+- 支持23 种不同的椭圆体，如果需要，可以轻松提供新的椭圆体
+- 将十进制度坐标转换并格式化为十进制度分或度分秒坐标。
+- 在通用横轴墨卡托(UTM) 投影中转换十进制坐标 
+- 使用flat 、 great circle 、haversine或vincenty算法计算两个坐标之间以米（默认）、km 、mi或ft为单位的距离
+- 计算从原点坐标到目标坐标的 初始和最终方位角（以度为单位）
+- 计算从原点坐标到目标坐标的初始和最终基点（方向），在wikipedia中阅读更多内容
+- 计算起点坐标和终点坐标之间的中点（坐标）
+- 使用以度为单位的给定方位和以米为单位的距离计算目的地点（坐标）
+- 将坐标编码为地理哈希字符串并将其解码为坐标，请在 维基百科和geohash.org上阅读更多内容
+- 通过 10:10 算法对坐标进行编码
+- Polygon类提供了检查 poing（坐标）在多边形边界内或边界上的方法。
+- Distance 、Point 、Geohash和Convert类的命令行界面( CLI) 
+
+
 
 
 
