@@ -214,7 +214,31 @@ https://packagist.org/packages/league/geotools
 - Distance 、Point 、Geohash和Convert类的命令行界面( CLI) 
 
 
-
+# 根据一个url获得携带的参数
+```php
+public static function getParamsByUrl(Request $request): array
+{
+    $arr = parse_url($request->url());
+    parse_str($arr['query'] ?? '', $query);
+    //unset鉴权
+    if (isset($query['access_token'])) {
+        unset($query['access_token']);
+    }
+    foreach ($query as $k => $v) {
+        if ('' === $v) {
+            unset($query[$k]);
+        }
+        if (is_array($v)) {
+            foreach ($v as $kk => $vv) {
+                if ('' === $vv) {
+                    unset($query[$k][$kk]);
+                }
+            }
+        }
+    }
+    return $query ?? [];
+}
+```
 
 
 
