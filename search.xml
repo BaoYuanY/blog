@@ -316,6 +316,18 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux+clash</title>
+    <url>/linux-clash/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>clash</category>
+      </categories>
+      <tags>
+        <tag>clash</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux安装Docker</title>
     <url>/linux-insert-docker/</url>
     <content><![CDATA[<h2 id="安装额外的工具"><a href="#安装额外的工具" class="headerlink" title="安装额外的工具"></a>安装额外的工具</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2 --skip-broken</span><br></pre></td></tr></table></figure></div>
