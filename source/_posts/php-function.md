@@ -240,6 +240,152 @@ public static function getParamsByUrl(Request $request): array
 }
 ```
 
+# 加密解密示例
+
+加密
+
+```php
+<?php
+
+class WeilingEncryptCryptUtilService
+{
+    protected $aesKey;
+
+    public function __construct($encodingAesKey)
+    {
+        $this->aesKey = base64_decode(preg_replace('/\s+/', '', $encodingAesKey), true);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function encrypt($content)
+    {
+        try {
+            list($cipherKey, $iv) = $this->prepareKeyAndIv($this->aesKey);
+            $encodedContent = $this->encode($content);
+            $encrypted      = openssl_encrypt($encodedContent, 'AES-256-CBC', $cipherKey, OPENSSL_RAW_DATA, $iv);
+            $result         = base64_encode($encrypted);
+        } catch (\Exception $e) {
+            throw new \Exception("Error occurred during encryption: " . $e->getMessage());
+        }
+
+        return $result;
+    }
+
+    protected function prepareKeyAndIv($key)
+    {
+        $cipherKey = substr($key, 0, 32);
+        $iv        = substr($key, 0, 16);
+
+        return [$cipherKey, $iv];
+    }
+
+    protected function encode($content)
+    {
+        $contentLength = strlen($content);
+        $networkOrder  = $this->number2BytesNetworkOrder($contentLength);
+        $randomString  = $this->getRandomString(16);
+
+        $pad = 32 - ($contentLength % 32);
+        if ($pad === 0) {
+            $pad = 32;
+        }
+
+        $padString      = str_repeat(chr($pad), $pad);
+        $encodedContent = $randomString . $networkOrder . $content . $padString;
+
+        return $encodedContent;
+    }
+
+    protected function number2BytesNetworkOrder($number)
+    {
+        $bytesInNetworkOrder = "";
+        for ($i = 0; $i < 4; $i++) {
+            $bytesInNetworkOrder = chr(($number >> (8 * (3 - $i))) & 0xFF) . $bytesInNetworkOrder;
+        }
+        return $bytesInNetworkOrder;
+    }
+
+    protected function getRandomString($length)
+    {
+        $characters   = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charLen      = strlen($characters);
+        $randomString = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charLen - 1)];
+        }
+
+        return $randomString;
+    }
+}
+```
+
+
+解密
+
+```php
+<?php
+
+class WeilingCallbackCryptUtilService
+{
+
+    protected $aesKey;
+
+    public function __construct($encodingAesKey)
+    {
+        $this->aesKey = base64_decode(preg_replace('/\s+/', '', $encodingAesKey), true);
+    }
+
+    public function decrypt($encryptedText)
+    {
+        try {
+            list($cipherKey, $iv) = $this->prepareKeyAndIv($this->aesKey);
+            $decrypted = openssl_decrypt(base64_decode($encryptedText), 'AES-256-CBC', $cipherKey, 7, $iv);
+            $result    = $this->decode($decrypted);
+        } catch (\Exception $e) {
+            $result = null;
+        }
+
+        return $result;
+    }
+
+    protected function prepareKeyAndIv($key)
+    {
+        $cipherKey = substr($key, 0, 32);
+        $iv        = substr($key, 0, 16);
+
+        return [$cipherKey, $iv];
+    }
+
+    protected function decode($decrypted)
+    {
+        $pad = ord($decrypted[strlen($decrypted) - 1]);
+        if ($pad < 1 || $pad > 32) {
+            $pad = 0;
+        }
+        $content = substr($decrypted, 0, strlen($decrypted) - $pad);
+
+        $networkOrder  = substr($content, 16, 4);
+        $contentLength = $this->bytesNetworkOrder2Number($networkOrder);
+        $trueContent   = substr($content, 20, $contentLength);
+        $pad           = ord($trueContent[strlen($trueContent) - 1]);
+        return substr($trueContent, 0, -1 * $pad);
+    }
+
+    protected function bytesNetworkOrder2Number($bytesInNetworkOrder)
+    {
+        $sourceNumber = 0;
+        for ($i = 0; $i < 4; $i++) {
+            $sourceNumber <<= 8;
+            $sourceNumber |= ord($bytesInNetworkOrder[$i]);
+        }
+        return $sourceNumber;
+    }
+}
+```
+
 
 
 
