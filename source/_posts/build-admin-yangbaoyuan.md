@@ -24,7 +24,11 @@ Mysql: `8.0.27`
 //添加到对应的migration文件中
 \Illuminate\Support\Facades\DB::statement("ALTER TABLE `table` COMMENT '********'");
 ```
-
+### 权限相关
+#### 1. docker内权限配置
+```shell
+chown -hR 1000:1000 /www
+```
 
 
 
