@@ -31,8 +31,15 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qiniu.yangbaoyuan.cn/assets.png">
 <meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashWgetUrl.png">
+<meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashConfigDocument.png">
+<meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashConfigYaml.png">
+<meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashYamlContent.png">
+<meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashCompile.png">
+<meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashUi.png">
+<meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashStatus.png">
+<meta property="og:image" content="https://qiniu.yangbaoyuan.cn/clashProxyOnOrOff.png">
 <meta property="article:published_time" content="2023-08-04T15:43:00.000Z">
-<meta property="article:modified_time" content="2023-08-05T15:53:23.754Z">
+<meta property="article:modified_time" content="2023-08-05T20:34:48.708Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="clash">
 <meta name="twitter:card" content="summary">
@@ -268,8 +275,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-08-05 23:53:23</span>
-            <span class="mobile">2023-08-05 23:53:23</span>
+            <span class="desktop">2023-08-06 04:34:48</span>
+            <span class="mobile">2023-08-06 04:34:48</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -317,12 +324,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>234 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>686 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -342,7 +349,7 @@
 </div><div class="notel-content"><p><strong>SERVER</strong>: CentOS 7.6</p>
 </div></div>
 
-<h2 id="1-更新系统及安装必要的包"><a href="#1-更新系统及安装必要的包" class="headerlink" title="1. 更新系统及安装必要的包"></a>1. 更新系统及安装必要的包</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update -y</span><br><span class="line">sudo yum install -y wget unzip</span><br></pre></td></tr></table></figure></div>
+<h2 id="1-更新系统及安装必要的包"><a href="#1-更新系统及安装必要的包" class="headerlink" title="1. 更新系统及安装必要的包"></a>1. 更新系统及安装必要的包</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update -y</span><br><span class="line">sudo yum install -y wget unzip</span><br><span class="line">sudo yum install -y git</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="2-准备clash二进制文件"><a href="#2-准备clash二进制文件" class="headerlink" title="2. 准备clash二进制文件"></a>2. 准备clash二进制文件</h2><a class="button  regular" target="_blank" rel="noopener" href='https://github.com/Dreamacro/clash/releases' title='跳转Github/Clash'><i class='fa-brands fa-github'></i> 跳转Github/Clash</a>
 <p>例如我下载的是下图中框起来的<br><img  
@@ -360,7 +367,72 @@
 <p>下载到服务器上以后放在 <code>/usr/local/bin</code> 目录下解压然后重命名</p>
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">解压</span></span><br><span class="line">gunzip clash-linux-amd64-v1.17.0.gz</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">重命名</span></span><br><span class="line">mv clash-linux-amd64-v1.17.0 clash</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="3-配置配置文件"><a href="#3-配置配置文件" class="headerlink" title="3. 配置配置文件"></a>3. 配置配置文件</h2>
+<h2 id="3-配置配置文件"><a href="#3-配置配置文件" class="headerlink" title="3. 配置配置文件"></a>3. 配置配置文件</h2><a class="button  regular" target="_blank" rel="noopener" href='https://dreamacro.github.io/clash/zh_CN/configuration/getting-started.html' title='配置说明文档'><i class='fa-brands fa-github'></i> 配置说明文档</a>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://qiniu.yangbaoyuan.cn/clashConfigDocument.png"
+                      alt="image"
+                ></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">依次使用如下命令</span></span><br><span class="line">cd ~</span><br><span class="line">mkdir -p .config/clash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第一种 wget方式 （我的订阅地址下载下来并不直接是配置文件，所以会用第二种方式）</span></span><br><span class="line">wget -O config.yaml &#123;订阅地址&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第二种 用本地的配置文件复制到服务器上</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+<p>配置结果如下图<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://qiniu.yangbaoyuan.cn/clashConfigYaml.png"
+                      alt="image"
+                ><br>需要在原有的基础上修改和添加一些东西<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://qiniu.yangbaoyuan.cn/clashYamlContent.png"
+                      alt="image"
+                ></p>
+<ol>
+<li>修改 <code>external-controller</code> 为 <strong><code>0.0.0.0:9090</code></strong> (把IP限制放开)</li>
+<li>添加 <code>external-ui</code> 为 <strong><code>/usr/local/bin/clash-dashboard</code></strong> (配置UI界面的路径)</li>
+<li>添加 <code>secret</code> (登录密码，可自由设定)</li>
+</ol>
+<h2 id="4-配置UI界面"><a href="#4-配置UI界面" class="headerlink" title="4. 配置UI界面"></a>4. 配置UI界面</h2><a class="button  regular" target="_blank" rel="noopener" href='https://github.com/Dreamacro/clash-dashboard' title='跳转Clash-Dashboard'><i class='fa-brands fa-github'></i> 跳转Clash-Dashboard</a>
+
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">进入配置文件对应的目录</span></span><br><span class="line">cd /usr/local/bin/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">克隆 gh-pages (已经编译好的html)</span></span><br><span class="line">git clone -b gh-pages https://github.com/Dreamacro/clash-dashboard.git</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h2 id="5-使用clash"><a href="#5-使用clash" class="headerlink" title="5. 使用clash"></a>5. 使用clash</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/bin</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开启</span></span><br><span class="line">./clash</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://qiniu.yangbaoyuan.cn/clashCompile.png"
+                      alt="image"
+                ></p>
+<h2 id="6-UI"><a href="#6-UI" class="headerlink" title="6. UI"></a>6. UI</h2><ol>
+<li>确保服务器端口<code>9090</code>是允许访问的</li>
+<li>在浏览器输入 <strong>IP:9090&#x2F;ui</strong> （IP填写你自己的IP地址）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://qiniu.yangbaoyuan.cn/clashUi.png"
+                      alt="image"
+                ></li>
+</ol>
+<h2 id="7-设置系统管理"><a href="#7-设置系统管理" class="headerlink" title="7. 设置系统管理"></a>7. 设置系统管理</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/clash.service</span><br></pre></td></tr></table></figure></div>
+<p>将下列内容粘贴到文件内</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Clash daemon, A rule-based proxy in Go.</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">Restart=always</span><br><span class="line">ExecStart=/usr/local/bin/clash -f /root/.config/clash/config.yaml</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></div>
+
+
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">重新加载配置文件</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开启clash (要么再第五步开启clash,要么使用systemctl开启,开一处即可)</span></span><br><span class="line">systemctl start clash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">重启clash</span></span><br><span class="line">systemctl restart clash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">关闭clash</span></span><br><span class="line">systemctl stop clash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看clash状态</span></span><br><span class="line">systemctl status clash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开机自启</span></span><br><span class="line">systemctl enable clash</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://qiniu.yangbaoyuan.cn/clashStatus.png"
+                      alt="image"
+                ></p>
+<h2 id="9-设置系统代理"><a href="#9-设置系统代理" class="headerlink" title="9. 设置系统代理"></a>9. 设置系统代理</h2><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">vim .bash_profile</span><br></pre></td></tr></table></figure></div>
+<p>将函数添加在文件中</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function proxy_off() &#123;</span><br><span class="line">    # 移除代理</span><br><span class="line">    unset http_proxy</span><br><span class="line">    unset https_proxy</span><br><span class="line">    unset all_proxy</span><br><span class="line">    echo &#x27;********   关闭当前终端代理   ********&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function proxy_on() &#123;</span><br><span class="line">export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7891</span><br><span class="line">    echo &#x27;********   开启当前终端代理   ********&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://qiniu.yangbaoyuan.cn/clashProxyOnOrOff.png"
+                      alt="image"
+                ></p>
+
         </div>
 
         
@@ -409,7 +481,7 @@
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
         <div class="page-title">Linux+clash</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E5%8F%8A%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E7%9A%84%E5%8C%85"><span class="nav-text">1. 更新系统及安装必要的包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%87%86%E5%A4%87clash%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="nav-text">2. 准备clash二进制文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3. 配置配置文件</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E5%8F%8A%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E7%9A%84%E5%8C%85"><span class="nav-text">1. 更新系统及安装必要的包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%87%86%E5%A4%87clash%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="nav-text">2. 准备clash二进制文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3. 配置配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AEUI%E7%95%8C%E9%9D%A2"><span class="nav-text">4. 配置UI界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BD%BF%E7%94%A8clash"><span class="nav-text">5. 使用clash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-UI"><span class="nav-text">6. UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="nav-text">7. 设置系统管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86"><span class="nav-text">9. 设置系统代理</span></a></li></ol>
 
     </div>
 </div>
