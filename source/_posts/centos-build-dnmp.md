@@ -34,31 +34,9 @@ docker-compose --version
 
 按需拉取 随便放在一个地方
 
-{% tabs 代码克隆 %}
-<!-- tab gitee-->
-
-```bash
-git clone https://gitee.com/baoyuan0304/dnmp.git
-```
-
-<!-- endtab -->
-
-<!-- tab github-->
-
 ```bash
 git clone -b Linux https://github.com/BaoYuanY/dnmp.git
 ```
-
-<!-- endtab -->
-
-<!-- tab gitlab-->
-
-```bash
-git clone -b Linux https://gitlab.yangbaoyuan.cn/BaoYuan/dnmp.git
-```
-
-<!-- endtab -->
-{% endtabs %}
 
 # 四. 配置
 
