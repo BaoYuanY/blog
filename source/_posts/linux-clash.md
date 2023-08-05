@@ -35,6 +35,9 @@ gunzip clash-linux-amd64-v1.17.0.gz
 mv clash-linux-amd64-v1.17.0 clash
 ```
 
+## 3. 配置配置文件
+
+
 
 
 
