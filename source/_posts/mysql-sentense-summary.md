@@ -59,3 +59,41 @@ FLUSH PRIVILEGES;
 mysql -u new_admin -p -h your_server_address
 ```
 然后输入相应的密码进行登录。
+
+
+# ‣将idb文件转化为sql
+
+1. 断开表：
+
+```sql
+USE your_database;
+ALTER TABLE `your_table` DISCARD TABLESPACE;
+```
+
+2. 然后，导入.ibd文件以及更名后的表名：
+
+```sql
+ALTER TABLE `your_table` IMPORT TABLESPACE;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
