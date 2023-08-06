@@ -721,10 +721,35 @@
   <entry>
     <title>MySQL一些语句汇总</title>
     <url>/mysql-sentense-summary/</url>
-    <content><![CDATA[<h1 id="查询数据库中一个或两个字段重复的"><a href="#查询数据库中一个或两个字段重复的" class="headerlink" title="查询数据库中一个或两个字段重复的"></a>查询数据库中一个或两个字段重复的</h1><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field1, field2, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> count</span><br><span class="line"><span class="keyword">FROM</span> `<span class="keyword">table</span>`</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> field1, field2</span><br><span class="line"><span class="keyword">HAVING</span> count <span class="operator">&gt;</span> <span class="number">1</span>;    </span><br></pre></td></tr></table></figure></div>
+    <content><![CDATA[<h1 id="‣查询数据库中一个或两个字段重复的"><a href="#‣查询数据库中一个或两个字段重复的" class="headerlink" title="‣查询数据库中一个或两个字段重复的"></a>‣查询数据库中一个或两个字段重复的</h1><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field1, field2, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> count</span><br><span class="line"><span class="keyword">FROM</span> `<span class="keyword">table</span>`</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> field1, field2</span><br><span class="line"><span class="keyword">HAVING</span> count <span class="operator">&gt;</span> <span class="number">1</span>;    </span><br></pre></td></tr></table></figure></div>
 
 
-<h1 id="截断某张表"><a href="#截断某张表" class="headerlink" title="截断某张表"></a>截断某张表</h1><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">truncate</span> `<span class="keyword">table</span>`;</span><br></pre></td></tr></table></figure></div>]]></content>
+<h1 id="‣截断某张表"><a href="#‣截断某张表" class="headerlink" title="‣截断某张表"></a>‣截断某张表</h1><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">truncate</span> `<span class="keyword">table</span>`;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="‣新增用户"><a href="#‣新增用户" class="headerlink" title="‣新增用户"></a>‣新增用户</h1><p>要在MySQL中创建一个新的管理员用户并允许所有IP地址登录，您可以按照以下步骤操作：</p>
+<ol>
+<li><p>首先，用已有的管理员账户（例如，’root’）登录到MySQL命令行，输入以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></div>
+<p>然后输入您的密码。</p>
+</li>
+<li><p>在MySQL命令行中，运行以下命令以创建一个新用户（例如，’new_admin’）并设置密码（将’your_password’替换为您真正的密码）：</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;new_admin&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;your_password&#x27;</span>;</span><br></pre></td></tr></table></figure></div>
+<p><code>&#39;%&#39;</code>意味着允许来自任意IP地址的连接。</p>
+</li>
+<li><p>现在，要赋予新用户所有数据库的所有权限，运行以下命令：</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;new_admin&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION;</span><br></pre></td></tr></table></figure></div>
+<p>这将为新用户提供执行所有操作的权限，并允许其授予其他用户权限。</p>
+</li>
+<li><p>使更改生效，执行以下命令：</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>最后，使用<code>\q</code>命令退出MySQL命令行：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">\q</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<p>现在，您已成功创建了一个新的管理员用户，并允许从任何IP地址登录。用户可以使用以下命令连接到MySQL服务器（确保使用实际的MySQL服务器地址替换<code>your_server_address</code>）：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u new_admin -p -h your_server_address</span><br></pre></td></tr></table></figure></div>
+<p>然后输入相应的密码进行登录。</p>
+]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
