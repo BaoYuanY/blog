@@ -7,7 +7,7 @@ excerpt: "总结..."
 ---
 
 
-# ‣查询数据库中一个或两个字段重复的
+# ‣ 查询数据库中一个或两个字段重复的
 
 ```sql
 SELECT field1, field2, COUNT(*) as count
@@ -17,13 +17,13 @@ HAVING count > 1;
 ```
 
 
-# ‣截断某张表
+# ‣ 截断某张表
 
 ```sql
 truncate `table`;
 ```
 
-# ‣新增用户
+# ‣ 新增用户
 要在MySQL中创建一个新的管理员用户并允许所有IP地址登录，您可以按照以下步骤操作：
 
 1. 首先，用已有的管理员账户（例如，'root'）登录到MySQL命令行，输入以下命令：
@@ -61,7 +61,7 @@ mysql -u new_admin -p -h your_server_address
 然后输入相应的密码进行登录。
 
 
-# ‣将idb文件转化为sql
+# ‣ 将idb文件转化为sql
 
 1. 断开表：
 

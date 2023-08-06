@@ -6,7 +6,7 @@ categories: [ 'PHP' ]
 excerpt: "还包含已经写好的算法"
 ---
 
-# 数组多键排序
+# ‣ 数组多键排序
 
 ``` php
         use Illuminate\Support\Collection;
@@ -78,7 +78,7 @@ excerpt: "还包含已经写好的算法"
 3. 如果`math`也相等，最后比较`english`。与前两次比较一样，使用合并比较运算符`<=>`进行降序排序。
        
 
-# 查询任意一个字符串是否存在另一个字符串中
+# ‣ 查询任意一个字符串是否存在另一个字符串中
 
 ```php
 $match = function($string, $keywords) {
@@ -98,7 +98,7 @@ $res      = $match($string, $keywords);
 `strpos()` 只针对于一个字符串，所以这里用正则匹配更好一点
 
 
-# 两个数组取交集
+# ‣ 两个数组取交集
 
 ```php
 $array1 = [1, 2, 3];
@@ -122,7 +122,7 @@ Array
 2. 请注意，交集数组中的元素保留了原始数组中的键。如果你想重置键，可以使用 `array_values()` 函数对交集数组进行重新索引：
 
 
-# json_encode时遇到\n解决办法
+# ‣ json_encode时遇到\n解决办法
 
 当你使用`json_decode`函数将包含`\n`的字符串转换为数组时，可能会出现错误。这是因为`\n`是一个特殊的转义字符，表示换行符。在PHP中，当你使用双引号字符串时，`\n`会被解析为换行符，而不是作为字符串的一部分。
 
@@ -156,7 +156,7 @@ $decodedArray = json_decode($jsonString, true);
 
 这样，`\n`将被正确地转义为`\\n`，并且`json_decode`函数将能够正确地解析JSON字符串并将其转换为数组。
 
-# 简单加密手机号方式
+# ‣ 简单加密手机号方式
 
 ```php
     function encryptPhone(string $phone): string
@@ -170,7 +170,7 @@ $decodedArray = json_decode($jsonString, true);
 ```
 
 
-# 判断某个点位是否存在一个经纬度区域
+# ‣ 判断某个点位是否存在一个经纬度区域
 
 ```php
 $polygon = new \League\Geotools\Polygon\Polygon([
@@ -214,7 +214,7 @@ https://packagist.org/packages/league/geotools
 - Distance 、Point 、Geohash和Convert类的命令行界面( CLI) 
 
 
-# 根据一个url获得携带的参数
+# ‣ 根据一个url获得携带的参数
 ```php
 public static function getParamsByUrl(Request $request): array
 {
@@ -240,7 +240,7 @@ public static function getParamsByUrl(Request $request): array
 }
 ```
 
-# 加密解密示例
+# ‣ 加密解密示例
 
 加密
 
