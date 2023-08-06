@@ -30,7 +30,7 @@
 <meta property="og:description" content="总结...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-25T15:27:00.000Z">
-<meta property="article:modified_time" content="2023-08-06T01:59:24.410Z">
+<meta property="article:modified_time" content="2023-08-06T02:03:13.212Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -265,8 +265,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-08-06 09:59:24</span>
-            <span class="mobile">2023-08-06 09:59:24</span>
+            <span class="desktop">2023-08-06 10:03:13</span>
+            <span class="mobile">2023-08-06 10:03:13</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -304,7 +304,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>356 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>393 字</span>
         </span>
     
     
@@ -353,6 +353,37 @@
 <p>现在，您已成功创建了一个新的管理员用户，并允许从任何IP地址登录。用户可以使用以下命令连接到MySQL服务器（确保使用实际的MySQL服务器地址替换<code>your_server_address</code>）：</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u new_admin -p -h your_server_address</span><br></pre></td></tr></table></figure></div>
 <p>然后输入相应的密码进行登录。</p>
+<h1 id="‣将idb文件转化为sql"><a href="#‣将idb文件转化为sql" class="headerlink" title="‣将idb文件转化为sql"></a>‣将idb文件转化为sql</h1><ol>
+<li>断开表：</li>
+</ol>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">USE your_database;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `your_table` DISCARD TABLESPACE;</span><br></pre></td></tr></table></figure></div>
+
+<ol start="2">
+<li>然后，导入.ibd文件以及更名后的表名：</li>
+</ol>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `your_table` IMPORT TABLESPACE;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
 
@@ -417,7 +448,7 @@
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
         <div class="page-title">MySQL一些语句汇总</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%A3%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E4%B8%80%E4%B8%AA%E6%88%96%E4%B8%A4%E4%B8%AA%E5%AD%97%E6%AE%B5%E9%87%8D%E5%A4%8D%E7%9A%84"><span class="nav-text">‣查询数据库中一个或两个字段重复的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%A3%E6%88%AA%E6%96%AD%E6%9F%90%E5%BC%A0%E8%A1%A8"><span class="nav-text">‣截断某张表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%A3%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7"><span class="nav-text">‣新增用户</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%A3%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E4%B8%80%E4%B8%AA%E6%88%96%E4%B8%A4%E4%B8%AA%E5%AD%97%E6%AE%B5%E9%87%8D%E5%A4%8D%E7%9A%84"><span class="nav-text">‣查询数据库中一个或两个字段重复的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%A3%E6%88%AA%E6%96%AD%E6%9F%90%E5%BC%A0%E8%A1%A8"><span class="nav-text">‣截断某张表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%A3%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7"><span class="nav-text">‣新增用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%A3%E5%B0%86idb%E6%96%87%E4%BB%B6%E8%BD%AC%E5%8C%96%E4%B8%BAsql"><span class="nav-text">‣将idb文件转化为sql</span></a></li></ol>
 
     </div>
 </div>

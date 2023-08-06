@@ -749,6 +749,37 @@
 <p>现在，您已成功创建了一个新的管理员用户，并允许从任何IP地址登录。用户可以使用以下命令连接到MySQL服务器（确保使用实际的MySQL服务器地址替换<code>your_server_address</code>）：</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u new_admin -p -h your_server_address</span><br></pre></td></tr></table></figure></div>
 <p>然后输入相应的密码进行登录。</p>
+<h1 id="‣将idb文件转化为sql"><a href="#‣将idb文件转化为sql" class="headerlink" title="‣将idb文件转化为sql"></a>‣将idb文件转化为sql</h1><ol>
+<li>断开表：</li>
+</ol>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line">USE your_database;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `your_table` DISCARD TABLESPACE;</span><br></pre></td></tr></table></figure></div>
+
+<ol start="2">
+<li>然后，导入.ibd文件以及更名后的表名：</li>
+</ol>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `your_table` IMPORT TABLESPACE;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ]]></content>
       <categories>
         <category>MySQL</category>
