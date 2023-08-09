@@ -31,7 +31,7 @@ excerpt: "使用docker-compose管理gitlab"
       - ./log/gitlab:/var/log/gitlab/:rw
     shm_size: '2000m'
 ```
-
+{% btn regular::具体项目::https://gitlab.yangbaoyuan.cn/BaoYuan/dnmp::fa-brands fa-github %}
 ## 3. 用户配置
 ### 从日志获取
 在 GitLab 的 Docker 镜像中，默认管理员的用户名是 `root`。要以管理员身份登录 GitLab，请按照以下步骤操作：
