@@ -387,6 +387,120 @@ class WeilingCallbackCryptUtilService
 ```
 
 
+# ‣ BC Math
+
+BC Math 扩展提供了一些任意精度的数学运算函数。以下是这些函数的列表以及相应的示例：
+
+1. `bcadd` - 加法
+
+```php
+$num1 = '1.235';
+$num2 = '2.764';
+$precision = 3;
+
+$result = bcadd($num1, $num2, $precision);
+echo $result; // 输出 "3.999"
+```
+
+2. `bcsub` - 减法
+
+```php
+$num1 = '5.321';
+$num2 = '2.125';
+$precision = 3;
+
+$result = bcsub($num1, $num2, $precision);
+echo $result; // 输出 "3.196"
+```
+
+3. `bcmul` - 乘法
+
+```php
+$num1 = '4.75';
+$num2 = '3.23';
+$precision = 4;
+
+$result = bcmul($num1, $num2, $precision);
+echo $result; // 输出 "15.3375"
+```
+
+4. `bcdiv` - 除法
+
+```php
+$num1 = '9.876';
+$num2 = '2.53';
+$precision = 4;
+
+$result = bcdiv($num1, $num2, $precision);
+echo $result; // 输出 "3.9012"
+```
+
+5. `bcmod` - 模（求余数）
+
+```php
+$num1 = '105';
+$num2 = '4';
+
+$result = bcmod($num1, $num2);
+echo $result; // 输出 "1"
+```
+
+6. `bcpow` - 乘方
+
+```php
+$num1 = '2';
+$exponent = '5';
+$precision = 0;
+
+$result = bcpow($num1, $exponent, $precision);
+echo $result; // 输出 "32"
+```
+
+7. `bcpowmod` - 应用模运算的乘方
+
+```php
+$num1 = '5';
+$exponent = '3';
+$modulus = '11';
+
+$result = bcpowmod($num1, $exponent, $modulus);
+echo $result; // 输出 "4"
+```
+
+8. `bcsqrt` - 求平方根
+
+```php
+$num1 = '9';
+$precision = 0;
+
+$result = bcsqrt($num1, $precision);
+echo $result; // 输出 "3"
+```
+
+9. `bccomp` - 比较大小
+
+```php
+$num1 = '2.1415';
+$num2 = '2.1416';
+$precision = 4;
+
+$result = bccomp($num1, $num2, $precision);
+echo $result; // 输出 "-1"（$num1 < $num2）
+
+$num1 = '2.1416';
+$num2 = '2.1416';
+$result = bccomp($num1, $num2, $precision);
+echo $result; // 输出 "0"（$num1 == $num2）
+
+$num1 = '2.1417';
+$num2 = '2.1416';
+$result = bccomp($num1, $num2, $precision);
+echo $result; // 输出 "1"（$num1 > $num2）
+```
+
+在使用 BC Math 函数时，选择适当的精度参数非常重要，因为它决定了结果中小数点后的位数。注意，BC Math 默认只支持整数计算，如果需要保留小数，请务必指定精度。
+
+
 
 
 
